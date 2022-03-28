@@ -1,24 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import SearchProducts from "./Components/SearchProducts"
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import ProductDetails from "./Components/ProductDetail";
+
+const theme = createTheme({
+  palette: {
+    primary:{
+      main: '#000000'
+    },
+    secondary:{
+      main: '#ffffff'
+    },
+    tertiary:{
+      main: '#9b9b9b'
+    },
+    quaternary:{
+      main: '#727272'
+    },
+    fifth:{
+      main: '#9b9b9b'
+    },
+
+  }
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/consulta_productos/" element={<SearchProducts/>} />
+            <Route path="/consulta_productos/producto" element={<ProductDetails/>} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </>
   );
 }
 
